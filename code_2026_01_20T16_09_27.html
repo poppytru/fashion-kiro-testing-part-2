@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StyleHub - Modern fashion e-commerce platform aggregating products from Tesco F&F, Zara, and Bershka">
+    <title>StyleHub - Your Fashion Destination</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="mainHeader" class="header">
+        <div class="header-container">
+            <div class="logo">
+                <h1>StyleHub</h1>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for fashion items..." aria-label="Search products">
+                <button id="searchBtn" aria-label="Search">🔍</button>
+                <button id="clearSearch" class="clear-btn" aria-label="Clear search">×</button>
+            </div>
+            
+            <nav class="main-nav">
+                <a href="#categories">Categories</a>
+                <a href="#brands">Brands</a>
+                <a href="#sale">Sale</a>
+                <a href="#new">New Arrivals</a>
+            </nav>
+            
+            <div class="user-icons">
+                <button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">
+                    ♡
+                    <span class="badge" id="wishlistCount">0</span>
+                </button>
+                <button class="icon-btn" id="cartBtn" aria-label="Shopping cart">
+                    🛒
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+                <button class="icon-btn" id="profileBtn" aria-label="User profile">
+                    👤
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-slide active">
+            <div class="hero-content">
+                <h2>Summer Collection 2026</h2>
+                <p>Discover the latest trends from top retailers</p>
+                <button class="cta-btn">Shop Now</button>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <aside class="sidebar" id="filterSidebar">
+            <div class="filter-header">
+                <h3>Filters</h3>
+                <button id="clearFilters" class="clear-all-btn">Clear All</button>
+            </div>
+            
+            <div class="active-filters" id="activeFilters"></div>
+            
+            <div class="filter-section">
+                <button class="filter-toggle">Category</button>
+                <div class="filter-content">
+                    <label><input type="checkbox" name="category" value="women"> Women</label>
+                    <label><input type="checkbox" name="category" value="men"> Men</label>
+                    <label><input type="checkbox" name="category" value="kids"> Kids</label>
+                    <label><input type="checkbox" name="category" value="accessories"> Accessories</label>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <button class="filter-toggle">Brand</button>
+                <div class="filter-content">
+                    <label><input type="checkbox" name="brand" value="tesco"> Tesco F&F</label>
+                    <label><input type="checkbox" name="brand" value="zara"> Zara</label>
+                    <label><input type="checkbox" name="brand" value="bershka"> Bershka</label>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <button class="filter-toggle">Price Range</button>
+                <div class="filter-content">
+                    <div class="price-slider">
+                        <input type="range" id="minPrice" min="0" max="200" value="0">
+                        <input type="range" id="maxPrice" min="0" max="200" value="200">
+                        <div class="price-labels">
+                            <span>£<span id="minPriceLabel">0</span></span>
+                            <span>£<span id="maxPriceLabel">200</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <button class="filter-toggle">Size</button>
+                <div class="filter-content">
+                    <label><input type="checkbox" name="size" value="xs"> XS</label>
+                    <label><input type="checkbox" name="size" value="s"> S</label>
+                    <label><input type="checkbox" name="size" value="m"> M</label>
+                    <label><input type="checkbox" name="size" value="l"> L</label>
+                    <label><input type="checkbox" name="size" value="xl"> XL</label>
+                    <label><input type="checkbox" name="size" value="xxl"> XXL</label>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <button class="filter-toggle">Color</button>
+                <div class="filter-content color-swatches">
+                    <button class="color-swatch" data-color="black" style="background: #000" aria-label="Black"></button>
+                    <button class="color-swatch" data-color="white" style="background: #fff; border: 1px solid #e0e0e0" aria-label="White"></button>
+                    <button class="color-swatch" data-color="red" style="background: #c41e3a" aria-label="Red"></button>
+                    <button class="color-swatch" data-color="blue" style="background: #2c5f8d" aria-label="Blue"></button>
+                    <button class="color-swatch" data-color="green" style="background: #2d5016" aria-label="Green"></button>
+                    <button class="color-swatch" data-color="yellow" style="background: #ffd700" aria-label="Yellow"></button>
+                    <button class="color-swatch" data-color="pink" style="background: #ff69b4" aria-label="Pink"></button>
+                    <button class="color-swatch" data-color="brown" style="background: #8b4513" aria-label="Brown"></button>
+                </div>
+            </div>
+        </aside>
+
+        <section class="product-section">
+            <div class="product-header">
+                <h2 id="resultsTitle">All Products</h2>
+                <div class="sort-options">
+                    <label for="sortSelect">Sort by:</label>
+                    <select id="sortSelect">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest</option>
+                        <option value="rating">Top Rated</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="productGrid" class="product-grid"></div>
+            
+            <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                <div class="spinner"></div>
+                <p>Loading more products...</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <div class="product-image-main" id="modalImageMain"></div>
+                </div>
+                <div class="modal-right" id="modalProductDetails"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button id="closeCart" class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">£0.00</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>StyleHub brings together the best fashion from Tesco F&F, Zara, and Bershka in one convenient platform.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="#returns">Returns</a></li>
+                    <li><a href="#shipping">Shipping Info</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Retailer Partners</h4>
+                <ul>
+                    <li>Tesco F&F</li>
+                    <li>Zara</li>
+                    <li>Bershka</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#instagram" aria-label="Instagram">📷</a>
+                    <a href="#facebook" aria-label="Facebook">📘</a>
+                    <a href="#twitter" aria-label="Twitter">🐦</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 StyleHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
